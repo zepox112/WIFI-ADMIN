@@ -2,7 +2,7 @@ const CACHE_NAME = 'zepox-cache-v1';
 const assets = [
     '/',
     '/index.html',
-    '/logo.png'
+    '/https://i.ibb.co/prXN1Xmy/LOGO.png'
 ];
 
 // Sakinisha Service Worker (Cache files)
