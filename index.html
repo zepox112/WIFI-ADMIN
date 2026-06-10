@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+
+<html lang="sw">
+
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Airtel Wifi Management System</title>
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <style>
+        /* * ========================================================================
+
+         * AIRTEL WIFI MANAGEMENT SYSTEM - CSS STYLE SECTION
+
+         * ========================================================================
+
+         * Muundo huu umeandaliwa kwa mtindo wa Glassmorphism.
+
+         * Kila mtindo umeandikwa mstari kwa mstari ili kurahisisha usomaji.
+
+         */
+
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+
+
+        body {
+
+            background: linear-gradient(135deg, #ff1a1a 0%, #ffffff 100%);
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        /* Glassmorphism Card Effect */
+
+        .glass-container {
+
+            background: rgba(255, 255, 255, 0.25);
+
+            backdrop-filter: blur(12px);
+
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            width: 100%;
+
+            max-width: 800px;
+
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+
+            color: #1a1a1a;
+
+            position: relative;
+
+        }
+
+
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+
+        .header img {
+
+            width: 80px;
+
+            height: 80px;
+
+            border-radius: 50%;
+
+            border: 3px solid #ff1a1a;
+
+            object-fit: cover;
+
+        }
+
+
+
+        .header h1 {
+
+            font-size: 24px;
+
+            color: #d60000;
+
+            margin-top: 10px;
+
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+
+        }
+
+
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-weight: 600;
+
+            font-size: 14px;
+
+        }
+
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.5);
+
+            background: rgba(255, 255, 255, 0.6);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 16px;
+
+        }
+
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #ff1a1a;
+
+            background: rgba(255, 255, 255, 0.9);
+
+        }
+
+
+
+        button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            background: #ff1a1a;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow: 0 4px 15px rgba(255, 26, 26, 0.3);
+
+        }
+
+
+
+        button:hover {
+
+            background: #cc0000;
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        .hidden {
+
+            display: none;
+
+        }
+
+
+
+        .nav-tabs {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .nav-tabs button {
+
+            background: rgba(255, 255, 255, 0.4);
+
+            color: #333;
+
+            box-shadow: none;
+
+        }
+
+
+
+        .nav-tabs button.active {
+
+            background: #ff1a1a;
+
+            color: white;
+
+        }
+
+
+
+        /* Table Styles */
+
+        .table-container {
+
+            overflow-x: auto;
+
+            margin-top: 20px;
+
+            border-radius: 10px;
+
+        }
+
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background: rgba(255, 255, 255, 0.4);
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+
+
+        th,
+
+        td {
+
+            padding: 12px;
+
+            text-align: left;
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        }
+
+
+
+        th {
+
+            background: rgba(214, 0, 0, 0.85);
+
+            color: white;
+
+        }
+
+
+
+        .badge {
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .badge.active {
+
+            background: #28a745;
+
+            color: white;
+
+        }
+
+
+
+        .badge.expired {
+
+            background: #dc3545;
+
+            color: white;
+
+        }
+
+
+
+        /* Powered By Zepox Omni-Tech Footer CSS Style */
+
+        .zepox-footer {
+
+            text-align: center;
+
+            margin-top: 30px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #444444;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+        }
+
+
+
+        .zepox-footer span {
+
+            color: #d60000;
+
+        }
+
+
+
+        /* ========================================================================
+
+         * MITINDO YA THEME (THEME VARIATIONS) - NYONGEZA
+
+         * ========================================================================
+
+         */
+
+        body.theme-gray {
+
+            background: linear-gradient(135deg, #707070 0%, #e0e0e0 100%);
+
+        }
+
+        body.theme-gray button,
+        body.theme-gray .nav-tabs button.active,
+        body.theme-gray th {
+
+            background: #555555;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+        }
+
+        body.theme-gray .header h1,
+        body.theme-gray .zepox-footer span {
+
+            color: #333333;
+
+        }
+
+        body.theme-gray .header img {
+
+            border-color: #555555;
+
+        }
+
+
+
+        body.theme-pure-white {
+
+            background: #ffffff;
+
+        }
+
+        body.theme-pure-white .glass-container {
+
+            background: rgba(248, 249, 250, 0.95);
+
+            border: 1px solid #cccccc;
+
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+        }
+
+        body.theme-pure-white button,
+        body.theme-pure-white .nav-tabs button.active,
+        body.theme-pure-white th {
+
+            background: #000000;
+
+            color: #ffffff;
+
+            box-shadow: none;
+
+        }
+
+        body.theme-pure-white .header h1,
+        body.theme-pure-white .zepox-footer span {
+
+            color: #000000;
+
+        }
+
+        body.theme-pure-white .header img {
+
+            border-color: #000000;
+
+        }
+
+
+
+        /* * Responsive Styles for Mobile Devices 
+
+         * Inahakikisha mfumo unaonekana vizuri kwenye simu zote
+
+         */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 10px;
+
+            }
+
+
+
+            .glass-container {
+
+                padding: 15px;
+
+                border-radius: 15px;
+
+            }
+
+
+
+            .header h1 {
+
+                font-size: 20px;
+
+            }
+
+
+
+            .nav-tabs {
+
+                flex-direction: column;
+
+                gap: 5px;
+
+            }
+
+
+
+            .nav-tabs button {
+
+                font-size: 14px;
+
+                padding: 10px;
+
+            }
+
+
+
+            th,
+
+            td {
+
+                padding: 8px;
+
+                font-size: 13px;
+
+            }
+
+
+
+            .form-group input,
+            .form-group select {
+
+                padding: 10px;
+
+                font-size: 15px;
+
+            }
+
+
+
+            button {
+
+                padding: 10px;
+
+                font-size: 15px;
+
+            }
+
+
+
+            .zepox-footer {
+
+                font-size: 11px;
+
+                margin-top: 20px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+
+    <div class="glass-container">
+
+        <div class="header">
+
+            <img src="logo.jpg" alt="Airtel Logo"
+                onerror="this.src='https://via.placeholder.com/80/ff1a1a/ffffff?text=Airtel'">
+
+            <h1>Airtel Wifi Management System</h1>
+
+        </div>
+
+
+
+        <div id="loginSection">
+
+            <h3 style="text-align: center; margin-bottom: 15px;">Admin Security Login</h3>
+
+            <div class="form-group">
+
+                <label>Username</label>
+
+                <input type="text" id="username" value="Admin">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input type="password" id="password" placeholder="Weka password ya admin">
+
+            </div>
+
+            <button onclick="handleLogin()">Ingia Mfumoni</button>
+
+        </div>
+
+
+
+        <div id="dashboardSection" class="hidden">
+
+            <div class="nav-tabs">
+
+                <button id="tab1" class="active" onclick="switchTab('watejaList', 'tab1')">Wateja Walio hai</button>
+
+                <button id="tab4" onclick="switchTab('alertsList', 'tab4')">Alerts</button>
+
+                <button id="tab2" onclick="switchTab('sajiliMteja', 'tab2')">Sajili Mteja</button>
+
+                <button id="tab3" onclick="switchTab('settings', 'tab3')">Mipangilio</button>
+
+            </div>
+
+
+
+            <div id="watejaList">
+
+                <h3>Orodha ya Watumiaji wa Wi-Fi</h3>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Jina</th>
+
+                                <th>MAC Address</th>
+
+                                <th>Kifurushi</th>
+
+                                <th>Tarehe ya Kuisha</th>
+
+                                <th>Muda Ulobaki</th>
+
+                                <th>Hali</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="watejaTableBody">
+
+                            <tr>
+
+                                <td colspan="6" style="text-align:center;">Inapakia data...</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="alertsList" class="hidden">
+
+                <h3>Alerts: Watumiaji Waliomaliza Muda</h3>
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Jina la Mtumiaji</th>
+
+                                <th>MAC Address</th>
+
+                                <th>Kifurushi</th>
+
+                                <th>Hali ya Muda</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="alertsTableBody">
+
+                            <tr>
+
+                                <td colspan="4" style="text-align:center; color: #dc3545;">Hakuna mtumiaji aliyemaliza
+                                    muda wake kwa sasa.</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="sajiliMteja" class="hidden">
+
+                <h3>Ongeza Mtumiaji Mpya</h3><br>
+
+                <div class="form-group">
+
+                    <label>Jina la Mteja</label>
+
+                    <input type="text" id="clientName" placeholder="Mfano: Juma Rashid">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>MAC Address</label>
+
+                    <input type="text" id="clientMac" placeholder="Mfano: A1:B2:C3:D4:E5:F6">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Muda anaolipia (Chagua Kifurushi)</label>
+
+                    <select id="clientDuration" onchange="calculateExpiry()">
+
+                        <option value="">-- Chagua Kifurushi --</option>
+
+                        <option value="Masaa 3">Masaa 3</option>
+
+                        <option value="Siku Nzima">Siku Nzima (Saa 24)</option>
+
+                        <option value="Wiki">Wiki Nzima (Siku 7)</option>
+
+                        <option value="Mwezi">Mwezi Mzima (Siku 30)</option>
+
+                        <option value="Whole Night">Whole Night (6 Usiku - 12 Asubuhi)</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Tarehe na Muda Bando Linaloisha (Hujazwa Kiotomatiki)</label>
+
+                    <input type="datetime-local" id="clientExpiry">
+
+                </div>
+
+                <button onclick="handleAddClient()">Hifadhi Mteja Mfumoni</button>
+
+            </div>
+
+
+
+            <div id="settings" class="hidden">
+
+                <h3>Badilisha Password ya Admin</h3><br>
+
+                <div class="form-group">
+
+                    <label>Password Mpya</label>
+
+                    <input type="password" id="newPassword" placeholder="Weka password mpya">
+
+                </div>
+
+                <button onclick="handleChangePassword()">Hifadhi Password Mpya</button>
+
+                <br>
+                <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 20px 0;"><br>
+
+                <h3>Muonekano wa Mfumo (Theme Setting)</h3><br>
+
+                <div class="form-group">
+
+                    <label>Chagua Muonekano</label>
+
+                    <select id="themeSelect" onchange="handleThemeChange()">
+
+                        <option value="red">Red (Chaguo-msingi)</option>
+
+                        <option value="gray">Gray (Black and White)</option>
+
+                        <option value="pure-white">Pure White</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="zepox-footer">
+
+            Powered by <span>Zepox Omni-Tech</span>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /*
+
+         * ========================================================================
+
+         * JAVASCRIPT LOGIC AND DATA MANAGEMENT SYSTEM
+
+         * ========================================================================
+
+         */
+
+
+
+        // WEKA ILE LINK YAKO YA WEB APP URL KUTOKA GOOGLE APPS SCRIPT HAPA CHINI
+
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhH-nP9HGpY1yuYpwLFKmLBoyRUBwuJ5ltnoYjjXUSulN7cTspMLhs-sjXbsBq1fyk/exec";
+
+
+
+        // Set ya kuzuia alert kujirudia kila sekunde baada ya bando kuisha
+
+        const alertedClients = new Set();
+
+
+
+        /*
+
+         * Kipengele cha LocalStorage cha kusimamia Password ya mwanzo (Default Admin).
+
+         * Mfumo unapoanzishwa kwa mara ya kwanza, kama hakuna password iliyohifadhiwa,
+
+         * unaweka thamani ya 'admin' kama default automatically.
+
+         */
+
+        if (!localStorage.getItem('wifiAdminPassword')) {
+
+            localStorage.setItem('wifiAdminPassword', 'admin');
+
+        }
+
+
+
+        // Kupakia muonekano ulihifadhiwa mara ya kwanza mfumo unapowaka
+
+        const savedTheme = localStorage.getItem('wifiTheme') || 'red';
+
+        document.body.className = 'theme-' + savedTheme;
+
+        document.getElementById('themeSelect').value = savedTheme;
+
+
+
+        /**
+
+         * Kazi ya handleThemeChange:
+
+         * Inabadilisha muonekano mzima wa mfumo na kuuhifadhi kwenye LocalStorage
+
+         */
+
+        function handleThemeChange() {
+
+            const selectedTheme = document.getElementById('themeSelect').value;
+
+            localStorage.setItem('wifiTheme', selectedTheme);
+
+            document.body.className = 'theme-' + selectedTheme;
+
+        }
+
+
+
+        /**
+
+         * Kazi ya handleLogin:
+
+         * Inakagua jina la mtumiaji na password kutoka kwenye LocalStorage.
+
+         */
+
+        function handleLogin() {
+
+            const user = document.getElementById('username').value;
+
+            const pass = document.getElementById('password').value;
+
+            const correctPassword = localStorage.getItem('wifiAdminPassword');
+
+
+
+            // Kukagua kama data ni sahihi locally
+
+            if (user.toLowerCase() === 'admin' && pass === correctPassword) {
+
+                document.getElementById('loginSection').classList.add('hidden');
+
+                document.getElementById('dashboardSection').classList.remove('hidden');
+
+                loadClients();
+
+            } else {
+
+                alert("Hitilafu: Username au Password sio sahihi!");
+
+            }
+
+        }
+
+
+
+        /**
+
+         * Kazi ya calculateExpiry:
+
+         * Inapiga mahesabu ya bando kulingana na kifurushi kilichochaguliwa
+
+         */
+
+        function calculateExpiry() {
+
+            const duration = document.getElementById('clientDuration').value;
+
+            if (!duration) return;
+
+
+
+            let now = new Date();
+
+
+
+            if (duration === "Masaa 3") {
+
+                now.setHours(now.getHours() + 3);
+
+            } else if (duration === "Siku Nzima") {
+
+                now.setDate(now.getDate() + 1);
+
+            } else if (duration === "Wiki") {
+
+                now.setDate(now.getDate() + 7);
+
+            } else if (duration === "Mwezi") {
+
+                now.setMonth(now.getMonth() + 1);
+
+            } else if (duration === "Whole Night") {
+
+                // Whole Night: Saa 6 Usiku (00:00) hadi Saa 12 Asubuhi (06:00 AM)
+
+                if (now.getHours() >= 6) {
+
+                    now.setDate(now.getDate() + 1);
+
+                }
+
+                now.setHours(6, 0, 0, 0);
+
+            }
+
+
+
+            // Kugeuza kuwa mfumo wa HTML datetime-local (YYYY-MM-DDTHH:MM)
+
+            const year = now.getFullYear();
+
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+
+            const day = String(now.getDate()).padStart(2, '0');
+
+            const hours = String(now.getHours()).padStart(2, '0');
+
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+
+
+            document.getElementById('clientExpiry').value = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+        }
+
+
+
+        /**
+
+         * Kazi ya loadClients:
+
+         * Inapakia orodha yote ya wateja kutoka Google Sheets kupitia API ya SCRIPT_URL.
+
+         */
+
+        function loadClients() {
+
+            if (SCRIPT_URL === "WEKA_LINK_YAKO_YA_EXEC_HAPA") {
+
+                const tbody = document.getElementById('watejaTableBody');
+
+                tbody.innerHTML = "<tr><td colspan='6' style='text-align:center; color: #d60000;'>Tafadhali weka SCRIPT_URL sahihi kwenye kodi!</td></tr>";
+
+                return;
+
+            }
+
+
+
+            fetch(SCRIPT_URL)
+
+                .then(res => res.json())
+
+                .then(data => {
+
+                    const tbody = document.getElementById('watejaTableBody');
+
+                    tbody.innerHTML = "";
+
+                    if (data.length === 0) {
+
+                        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Hakuna mteja aliyesajiliwa bado.</td></tr>";
+
+                        return;
+
+                    }
+
+                    data.forEach((c, index) => {
+
+                        let kifurushi = c.kifurushi || "Masaa 3"; // Fallback kama haipo kwenye safu za mwanzo za sheet
+
+                        let dateFormated = new Date(c.tareheIsha).toLocaleDateString('sw-TZ') + " " + new Date(c.tareheIsha).toLocaleTimeString('sw-TZ', { hour: '2-digit', minute: '2-digit' });
+
+                        let statusBadge = c.hali === 'Active' ? `<span class="badge active" id="badge-${index}">Active</span>` : `<span class="badge expired" id="badge-${index}">Expired</span>`;
+
+
+
+                        tbody.innerHTML += `<tr>
+
+                        <td>${c.jina}</td>
+
+                        <td><code>${c.mac}</code></td>
+
+                        <td><strong>${kifurushi}</strong></td>
+
+                        <td>${dateFormated}</td>
+
+                        <td id="countdown-${index}" class="live-countdown" data-expiry="${c.tareheIsha}" data-name="${c.jina}" data-mac="${c.mac}" data-kifurushi="${kifurushi}" data-index="${index}">Inakokotoa...</td>
+
+                        <td>${statusBadge}</td>
+
+                    </tr>`;
+
+                    });
+
+                })
+
+                .catch(err => {
+
+                    const tbody = document.getElementById('watejaTableBody');
+
+                    tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Mfumo wa majaribio: Unganisha Web App vizuri.</td></tr>";
+
+                });
+
+        }
+
+
+
+        /**
+
+         * Mfumo wa Countdown unao-run kila sekunde 1 na kusasisha Tab ya Alerts dynamic
+
+         */
+
+        setInterval(function updateSystemCountdowns() {
+
+            const countdownElements = document.querySelectorAll('.live-countdown');
+
+            const alertsTbody = document.getElementById('alertsTableBody');
+
+            let alertsHtml = "";
+
+            let expiredCount = 0;
+
+
+
+            countdownElements.forEach(elem => {
+
+                const expiryStr = elem.getAttribute('data-expiry');
+
+                const clientName = elem.getAttribute('data-name');
+
+                const clientMac = elem.getAttribute('data-mac');
+
+                const clientKifurushi = elem.getAttribute('data-kifurushi');
+
+                const idx = elem.getAttribute('data-index');
+
+                const badgeElement = document.getElementById(`badge-${idx}`);
+
+
+
+                const expiryTime = new Date(expiryStr).getTime();
+
+                const now = new Date().getTime();
+
+                const distance = expiryTime - now;
+
+
+
+                if (isNaN(expiryTime)) {
+
+                    elem.innerHTML = "Muda Batili";
+
+                    return;
+
+                }
+
+
+
+                if (distance <= 0) {
+
+                    elem.innerHTML = "<span style='color: #dc3545; font-weight: bold;'>Muda Umeisha</span>";
+
+                    if (badgeElement && badgeElement.classList.contains('active')) {
+
+                        badgeElement.className = "badge expired";
+
+                        badgeElement.innerText = "Expired";
+
+                    }
+
+
+
+                    // Kutengeneza safu za kuweka kwenye Tab ya Alerts kiotomatiki
+
+                    alertsHtml += `<tr>
+
+                        <td>${clientName}</td>
+
+                        <td><code>${clientMac}</code></td>
+
+                        <td><strong>${clientKifurushi}</strong></td>
+
+                        <td><span class="badge expired">Muda Umeisha</span></td>
+
+                    </tr>`;
+
+                    expiredCount++;
+
+
+
+                    // Kutoa Alert mara moja tu bando linapoisha
+
+                    if (!alertedClients.has(clientName + expiryTime)) {
+
+                        alertedClients.add(clientName + expiryTime);
+
+                        alert(`ALERT: Muda wa bando la mteja huyu [ ${clientName} ] mwenye MAC [ ${clientMac} ] umeisha kabisa sasa hivi!`);
+
+                    }
+
+                } else {
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+                    let countdownText = "";
+
+                    if (days > 0) countdownText += `${days}s `;
+
+                    countdownText += `${hours}sh ${minutes}dk ${seconds}zk`;
+
+                    elem.innerHTML = countdownText;
+
+                }
+
+            });
+
+
+
+            // Kusasisha muonekano wa tab ya Alerts kila sekunde
+
+            if (alertsTbody) {
+
+                if (expiredCount === 0) {
+
+                    alertsTbody.innerHTML = "<tr><td colspan='4' style='text-align:center; color: #28a745; font-weight: bold;'>Hakuna mtumiaji aliyemaliza muda wake kwa sasa.</td></tr>";
+
+                } else {
+
+                    alertsTbody.innerHTML = alertsHtml;
+
+                }
+
+            }
+
+        }, 1000);
+
+
+
+        /**
+
+         * Kazi ya handleAddClient:
+
+         * Inasajili mteja mpya na kumtuma kwenye hifadhi ya mtandaoni.
+
+         */
+
+        function handleAddClient() {
+
+            const jina = document.getElementById('clientName').value;
+
+            const mac = document.getElementById('clientMac').value;
+
+            const tarehe = document.getElementById('clientExpiry').value;
+
+            const duration = document.getElementById('clientDuration').value || "Masaa 3";
+
+
+
+            if (!jina || !mac || !tarehe) return alert("Tafadhali jaza nafasi zote!");
+
+
+
+            if (SCRIPT_URL === "WEKA_LINK_YAKO_YA_EXEC_HAPA") {
+
+                alert("Huwezi kuhifadhi! Weka kwanza SCRIPT_URL ya Google Apps Script.");
+
+                return;
+
+            }
+
+
+
+            fetch(SCRIPT_URL, {
+
+                method: "POST",
+
+                body: JSON.stringify({ action: "addClient", jina: jina, mac: mac, tareheIsha: tarehe, kifurushi: duration })
+
+            })
+
+                .then(res => res.json())
+
+                .then(res => {
+
+                    alert(res.message);
+
+                    document.getElementById('clientName').value = "";
+
+                    document.getElementById('clientMac').value = "";
+
+                    document.getElementById('clientExpiry').value = "";
+
+                    document.getElementById('clientDuration').value = "";
+
+                    loadClients();
+
+                    switchTab('watejaList', 'tab1');
+
+                })
+
+                .catch(err => alert("Imeshindwa kutuma data kwenye seva mtandao!"));
+
+        }
+
+
+
+        /**
+
+         * Kazi ya handleChangePassword:
+
+         * Inabadilisha password ya sasa na kuihifadhi kwenye LocalStorage hapo hapo.
+
+         */
+
+        function handleChangePassword() {
+
+            const newPass = document.getElementById('newPassword').value;
+
+            if (!newPass) return alert("Andika password kwanza!");
+
+
+
+            // Inabadilisha na kusave hapo hapo kwenye Local Storage ya kifaa
+
+            localStorage.setItem('wifiAdminPassword', newPass);
+
+            alert("Password ya Admin imebadilishwa kikamilifu na kuhifadhiwa kwenye LocalStorage!");
+
+            document.getElementById('newPassword').value = "";
+
+
+
+            // Inarudisha mtumiaji kwenye tab ya kwanza baada ya kubadilisha
+
+            switchTab('watejaList', 'tab1');
+
+        }
+
+
+
+        /**
+
+         * Kazi ya switchTab:
+
+         * Inasimamia ubadilishaji wa kurasa (Tabs) bila kupoteza mfumo.
+
+         */
+
+        function switchTab(tabId, btnId) {
+
+            ['watejaList', 'alertsList', 'sajiliMteja', 'settings'].forEach(id => document.getElementById(id).classList.add('hidden'));
+
+            ['tab1', 'tab2', 'tab3', 'tab4'].forEach(id => document.getElementById(id).classList.remove('active'));
+
+
+
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.getElementById(btnId).classList.add('active');
+
+        }
+
+
+    </script>
+
+</body>
+
+
+
+</html>
